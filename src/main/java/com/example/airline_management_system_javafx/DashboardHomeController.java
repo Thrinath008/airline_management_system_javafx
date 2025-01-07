@@ -161,6 +161,7 @@ public class DashboardHomeController implements Initializable {
 //            alert.show();
             return;
         }
+// just testing
         try {
             //String slq = "SELECT flight_number, departure_city, arrival_city, flight_date, departure_time, arrival_time, fare" + "FROM flights_info_main" + "WHERE departure_city = ? AND arrival_city = ? AND flight_date = ?";
             String sql = "SELECT * FROM flights_info_main WHERE departure_city = ? AND arrival_city = ? AND flight_date = ?";
