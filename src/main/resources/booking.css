@@ -1,0 +1,114 @@
+/* General Styling */
+.root {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-background-color: #f9f9f9;
+}
+
+/* Summary Pane */
+.summary-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+}
+
+.summary-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.summary-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}
+
+.summary-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.summary-total {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #007aff;
+}
+
+/* Details Pane */
+.details-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+}
+
+.details-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.details-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-min-width: 100px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.details-input {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 6;
+    -fx-padding: 6 8;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.details-input:focused {
+    -fx-border-color: #007aff;
+    -fx-border-width: 2;
+}
+
+/* Buttons */
+.primary-button {
+    -fx-background-color: linear-gradient(to bottom, #007aff, #005bb5);
+    -fx-border-radius: 8;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 8 16;
+}
+
+.primary-button:hover {
+    -fx-background-color: #005bb5;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #003f80;
+}
+
+.secondary-button {
+    -fx-background-color: #e6e6e6;
+    -fx-border-radius: 8;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 8 16;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #cccccc;
+}
+
+.exit-button {
+    -fx-background-color: #ff3b30;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.exit-button:hover {
+    -fx-background-color: #e62e24;
+}
