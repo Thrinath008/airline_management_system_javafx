@@ -1,0 +1,117 @@
+/* General Styling */
+.root {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-background-color: #f9f9f9;
+}
+
+/* Header Label */
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Search Pane */
+.search-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+/* Input Fields */
+.input-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}
+
+.input-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 8;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.input-field:focused {
+    -fx-border-color: #007aff;
+    -fx-border-width: 2;
+}
+
+/* Checkboxes */
+.check-box {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Action Button */
+.action-button {
+    -fx-background-color: linear-gradient(to bottom, #007aff, #005bb5);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #005bb5;
+}
+
+.action-button:pressed {
+    -fx-background-color: #003f80;
+}
+
+/* Table View */
+.table-view {
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-background-color: #ffffff;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f0f0f0;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #007aff;
+    -fx-text-fill: #ffffff;
+}
+
+/* Secondary Button */
+.secondary-button {
+    -fx-background-color: #e6e6e6;
+    -fx-border-radius: 8;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #cccccc;
+}
+
+.secondary-button:pressed {
+    -fx-background-color: #b3b3b3;
+}
+
+/* Exit Button */
+.exit-button {
+    -fx-background-color: #ff3b30;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.exit-button:hover {
+    -fx-background-color: #e62e24;
+}

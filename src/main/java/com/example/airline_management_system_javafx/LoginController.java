@@ -75,17 +75,6 @@ public class LoginController implements Initializable {
                 System.out.println(x);
             }else {
                 if (resultSet.next()){
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("success");
-                    alert.setHeaderText(null);
-
-                    alert.setContentText("Login successful");
-                    PauseTransition delay = new PauseTransition(Duration.seconds(3));
-                    delay.setOnFinished(event -> alert.close()); // Close the alert after 3 seconds
-
-                    alert.show();
-                    delay.play();
-
                     login_button.getScene().getWindow().hide();
                     Parent parent = FXMLLoader.load(getClass().getResource("Dashboard-home.fxml"));
                     Stage stage = new Stage();
@@ -106,6 +95,16 @@ public class LoginController implements Initializable {
                     stage.initStyle(StageStyle.TRANSPARENT);
                     stage.setScene(scene);
                     stage.show();
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("success");
+                    alert.setHeaderText(null);
+
+                    alert.setContentText("Login successful");
+                    PauseTransition delay = new PauseTransition(Duration.seconds(3));
+                    delay.setOnFinished(event -> alert.close()); // Close the alert after 3 seconds
+
+                    alert.show();
+                    delay.play();
                 }
                 else {
                     alert = new Alert(Alert.AlertType.ERROR);

@@ -1,3 +1,105 @@
-#exit_button{
-    -fx-background-color: #FF0000
+/* General Styling for the application */
+.root {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-background-color: #f9f9f9;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-text-fill: #333333;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #d9d9d9);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #d9d9d9, #bfbfbf);
+    -fx-text-fill: #666666;
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-size: 12px;
+    -fx-text-fill: #333333;
+}
+
+.text-field:focused {
+    -fx-border-color: #007aff;
+    -fx-border-width: 2;
+    -fx-background-color: #ffffff;
+}
+
+/* Date Picker */
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10;
+    -fx-font-size: 12px;
+    -fx-text-fill: #333333;
+}
+
+.date-picker:focused {
+    -fx-border-color: #007aff;
+    -fx-border-width: 2;
+}
+
+/* Table View */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-table-cell-border-color: #f2f2f2;
+    -fx-padding: 8;
+}
+
+.table-column-header {
+    -fx-background-color: #f0f0f0, linear-gradient(to bottom, #ffffff, #e6e6e6);
+    -fx-border-color: transparent transparent #cccccc transparent;
+    -fx-padding: 10;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+}
+
+....table-row-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #007aff;
+    -fx-text-fill: #ffffff;
+}
+
+/* Scroll Bars */
+.scroll-bar {
+    -fx-background-color: #f2f2f2;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #d9d9d9;
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #c0c0c0;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #a6a6a6;
 }

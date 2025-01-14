@@ -41,7 +41,7 @@
                   <PasswordField fx:id="password_field" layoutX="45.0" layoutY="189.0" prefHeight="26.0" prefWidth="226.0" promptText="Enter here" />
                   <Button fx:id="login_button" layoutX="169.0" layoutY="272.0" mnemonicParsing="false" onAction="#loginPassengers" prefHeight="32.0" prefWidth="98.0" text="Login" />
                   <Button fx:id="signup_button" layoutX="52.0" layoutY="272.0" mnemonicParsing="false" onAction="#signup" prefHeight="32.0" prefWidth="98.0" text="SignUp" />
-                  <FontAwesomeIcon iconName="USER" layoutX="46.0" layoutY="106.0" size="5rem" wrappingWidth="12.857142448425293">
+                  <FontAwesomeIcon iconName="USER" layoutX="46.0" layoutY="106.0"  wrappingWidth="12.857142448425293"> <!-- size="5rem" -->
                      <font>
                         <Font size="18.0" />
                      </font>
