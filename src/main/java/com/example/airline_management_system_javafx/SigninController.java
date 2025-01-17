@@ -51,6 +51,8 @@ public class SigninController implements Initializable {
     @FXML
     private PasswordField signin_password;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     public void signin_button_on_action(ActionEvent event) throws SQLException {
         Alert alert;
@@ -92,6 +94,16 @@ public class SigninController implements Initializable {
         Parent parent = FXMLLoader.load(getClass().getResource("Login-screen.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(parent);
+        parent.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        parent.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }

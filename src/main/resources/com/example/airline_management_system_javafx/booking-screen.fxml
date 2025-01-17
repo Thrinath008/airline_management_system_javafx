@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airline_management_system_javafx.BookingController">
    <children>
@@ -16,15 +18,15 @@
       <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f9f9f9;" stylesheets="@../../../booking.css">
          <children>
             <!-- Fare Summary Section -->
-            <AnchorPane layoutX="493.0" layoutY="263.0" prefHeight="220.0" prefWidth="220.0" styleClass="summary-pane">
+            <AnchorPane fx:id="farePrice_anchorpane" layoutX="494.0" layoutY="281.0" prefHeight="220.0" prefWidth="220.0" styleClass="summary-pane" AnchorPane.rightAnchor="86.79999999999995">
                <children>
                   <Label layoutX="20.0" layoutY="20.0" styleClass="summary-header" text="Fare Summary" />
                   <Label layoutX="20.0" layoutY="70.0" styleClass="summary-label" text="Basic Fare:" />
                   <Label layoutX="23.0" layoutY="100.0" styleClass="summary-label" text="Taxes:" />
                   <Label layoutX="20.0" layoutY="130.0" styleClass="summary-label" text="Other Services:" />
                   <Label fx:id="basic_fare_label" layoutX="150.0" layoutY="70.0" styleClass="summary-value" text="€ XX.XX" />
-                  <Label layoutX="150.0" layoutY="100.0" styleClass="summary-value" text="€ XX.XX" />
-                  <Label layoutX="150.0" layoutY="130.0" styleClass="summary-value" text="€ XX.XX" />
+                  <Label layoutX="150.0" layoutY="100.0" styleClass="summary-value" text="€ 9.50" />
+                  <Label layoutX="150.0" layoutY="130.0" styleClass="summary-value" text="€ 2.50" />
                   <Line endX="180.0" layoutX="20.0" layoutY="160.0" />
                   <Label layoutX="20.0" layoutY="170.0" styleClass="summary-total" text="Total:" />
                   <Label id="final_fare_label" fx:id="final_fare_label" layoutX="150.0" layoutY="170.0" styleClass="summary-total" />
@@ -32,22 +34,22 @@
             </AnchorPane>
 
             <!-- Passenger Details Section -->
-            <AnchorPane layoutX="65.0" layoutY="261.0" prefHeight="220.0" prefWidth="400.0" styleClass="details-pane">
+            <AnchorPane fx:id="passangers_details_anchorpane" layoutX="51.0" layoutY="279.0" prefHeight="220.0" prefWidth="400.0" styleClass="details-pane" AnchorPane.leftAnchor="51.0">
                <children>
                   <Label layoutX="20.0" layoutY="20.0" styleClass="details-header" text="Passenger Details" />
                   <VBox layoutX="21.0" layoutY="68.0" prefWidth="360.0" spacing="15.0">
                      <children>
                         <HBox spacing="10.0">
                            <Label styleClass="details-label" text="Full Name:" />
-                           <TextField fx:id="full_name_textfield" prefWidth="200.0" styleClass="details-input" />
+                           <TextField fx:id="full_name_textfield" alignment="CENTER" prefWidth="200.0" styleClass="details-input" />
                         </HBox>
                         <HBox spacing="10.0">
                            <Label styleClass="details-label" text="Passport No:" />
-                           <TextField fx:id="pasport_textfield" prefWidth="200.0" styleClass="details-input" />
+                           <TextField fx:id="pasport_textfield" alignment="CENTER" prefWidth="200.0" styleClass="details-input" />
                         </HBox>
                         <HBox spacing="10.0">
                            <Label styleClass="details-label" text="Contact No:" />
-                           <TextField fx:id="contact_textfield" prefWidth="200.0" styleClass="details-input" />
+                           <TextField fx:id="contact_textfield" alignment="CENTER" prefWidth="200.0" styleClass="details-input" />
                         </HBox>
                      </children>
                   </VBox>
@@ -55,27 +57,101 @@
             </AnchorPane>
 
             <!-- Buttons Section -->
-            <HBox alignment="CENTER" layoutX="50.0" layoutY="520.0" prefWidth="700.0" spacing="20.0">
+            <HBox alignment="CENTER" layoutX="65.0" layoutY="518.0" prefHeight="36.0" prefWidth="404.0" spacing="20.0">
                <children>
                   <Button fx:id="back_to_flights" onAction="#backToFlights" styleClass="secondary-button" text="Search More Flights" />
-                  <Button onAction="#saveAndPay" styleClass="primary-button" text="Save &amp; Make Payment" />
+                  <Button fx:id="saveAndPay_Button" onAction="#setticket_details" styleClass="primary-button" text="confirm &amp; Book ticket" />
                </children>
             </HBox>
 
             <!-- Exit Button -->
             <Button fx:id="exit_button" layoutX="769.0" layoutY="1.0" onAction="#exit" styleClass="exit-button" text="X" />
-            <AnchorPane layoutX="65.0" layoutY="38.0" prefHeight="208.0" prefWidth="651.0" styleClass="details-pane" stylesheets="@../../../booking.css">
+            <AnchorPane layoutX="51.0" layoutY="37.0" prefHeight="240.0" prefWidth="662.0" styleClass="details-pane" stylesheets="@../../../booking.css" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="87.0">
                <children>
-                  <Label id="flight_from_label" fx:id="flight_from_label" layoutX="29.0" layoutY="13.0" prefHeight="42.0" prefWidth="58.0" text="from">
+                  <Label id="flight_from_label" fx:id="flight_from_label" layoutX="25.0" layoutY="13.0" prefHeight="42.0" prefWidth="58.0" text="from">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font></Label>
-                  <Label id="flight_to_label" fx:id="flight_to_label" layoutX="294.0" layoutY="16.0" prefHeight="36.0" prefWidth="64.0" text="to">
+                  <Label id="flight_to_label" fx:id="flight_to_label" layoutX="301.0" layoutY="17.0" prefHeight="36.0" prefWidth="64.0" text="to">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Line endX="100.0" layoutX="188.0" layoutY="35.0" startX="-100.0" />
+                  <FontAwesomeIcon iconName="PLANE" layoutX="267.0" layoutY="42.0" rotate="45.0" size="2EM" wrappingWidth="14.228559494018555" />
+                  <Label fx:id="from_time_labe_ticket" layoutX="22.0" layoutY="91.0" prefHeight="27.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="to_time_label_ticket" layoutX="22.0" layoutY="165.0" prefHeight="27.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="flight_number_label_ticket" layoutX="85.0" layoutY="54.0" prefHeight="26.0" prefWidth="82.0" text="Label">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="21.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="flight num:" />
+                  <Line endX="-57.4000244140625" endY="48.59999084472656" layoutX="140.0" layoutY="131.0" startX="-57.4000244140625" startY="-22.599990844726562" />
+                  <Text layoutX="79.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="o" />
+                  <Text layoutX="79.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="o" />
+                  <Label fx:id="from_small_label" layoutX="100.0" layoutY="99.0" text="Label">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="to_small_label" layoutX="100.0" layoutY="169.0" text="Label">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="144.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Airport T3" wrappingWidth="73.6781005859375" />
+                  <Text layoutX="144.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Airport T1" />
+                  <Label fx:id="duration_of_flight" layoutX="100.0" layoutY="135.0" text="Label" />
+                  <Text layoutX="159.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Economy">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="29.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15Kg check-in " wrappingWidth="82.39999999999986" />
+                  <FontAwesomeIcon iconName="BRIEFCASE" layoutX="12.0" layoutY="204.0" />
+                  <FontAwesomeIcon iconName="SUITCASE" layoutX="120.0" layoutY="205.0" />
+                  <Text layoutX="141.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7Kg carry-in" wrappingWidth="73.6781005859375" />
+                  <VBox alignment="CENTER_RIGHT" layoutX="415.0" layoutY="44.0" prefHeight="170.0" prefWidth="100.0" spacing="30.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="name:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="passport No:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="contact No:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seat No:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="522.0" layoutY="44.0" prefHeight="170.0" prefWidth="82.0" spacing="30.0">
+                     <children>
+                        <Label fx:id="name_in_ticket" text="Label" />
+                        <Label fx:id="passport_in_ticket" text="Label" />
+                        <Label fx:id="contact_in_ticket" text="Label" />
+                        <Label text="33 A" />
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>

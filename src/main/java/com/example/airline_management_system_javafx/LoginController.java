@@ -92,7 +92,7 @@ public class LoginController implements Initializable {
 
 
 
-                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.initStyle(StageStyle.UNDECORATED);
                     stage.setScene(scene);
                     stage.show();
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -127,6 +127,16 @@ public class LoginController implements Initializable {
         Parent parent = FXMLLoader.load(getClass().getResource("Signin-screen.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(parent);
+        parent.setOnMousePressed(event -> {
+            X = event.getSceneX();
+            Y = event.getSceneY();
+        });
+
+        parent.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - X);
+            stage.setY(event.getScreenY() - Y);
+        });
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
@@ -134,6 +144,17 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        login_textfield.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> password_field.requestFocus();
+            }
+        });
+        password_field.setOnKeyPressed(e->{
+            switch (e.getCode()){
+
+                case ENTER -> login_button.fire();
+            }
+        });
 
     }
 

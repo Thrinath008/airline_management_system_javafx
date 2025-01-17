@@ -88,6 +88,9 @@ public class DashboardHomeController implements Initializable {
     public String flight_to_time_ticket;
     public String flight_fare_ticket;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     @FXML
     public void logout_button() throws IOException {
         logout_button_.getScene().getWindow().hide();
@@ -127,6 +130,11 @@ public class DashboardHomeController implements Initializable {
         flight_data();
         main_tabel.setOnMouseClicked(e -> {
             FlightTabel selectedFlight = main_tabel.getSelectionModel().getSelectedItem();
+
+            if (selectedFlight == null) {
+                System.out.println("No flight selected. Please select a valid flight.");
+                return;
+            }
             main_tabel.getScene().getWindow().hide();
             try {
                 FXMLLoader parent = new FXMLLoader(BookingController.class.getResource("booking-screen.fxml"));
@@ -135,7 +143,18 @@ public class DashboardHomeController implements Initializable {
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(node);
-//                stage.initStyle(StageStyle.UNDECORATED);
+
+                node.setOnMousePressed(event -> {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                });
+
+                node.setOnMouseDragged(event -> {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
+                });
+
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(scene);
 
                 // populate scene
@@ -213,8 +232,4 @@ public class DashboardHomeController implements Initializable {
      //   System.out.println(flight_fare_ticket);
     }
 
-    public String getflightnumber(String x) {
-        x = flight_fare_ticket;
-        return x;
-    }
 }
