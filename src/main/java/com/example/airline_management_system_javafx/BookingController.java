@@ -318,7 +318,10 @@ public class BookingController implements Initializable {
                 fileChooser.setInitialFileName(full_name_textfield.getText()+" Flight ticket");
                 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
-                // Show the save dialog
+                File downloadsDir = new File(System.getProperty("user.home"), "Downloads");
+                if (downloadsDir.exists()) {
+                    fileChooser.setInitialDirectory(downloadsDir);
+                }
                 File file = fileChooser.showSaveDialog(parentStage);
                 if (file != null) {
                     createPdf(main_ticket_anchorpane, file.getAbsolutePath(), imagePaths); // Pass the image paths

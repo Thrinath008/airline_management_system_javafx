@@ -207,6 +207,16 @@ public class AdminScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        from_textfield.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> to_textfield.requestFocus();
+            }
+        });
+        to_textfield.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> date_field.requestFocus();
+            }
+        });
         setlogcolValue();
         ObservableList<LogEntry> logsData = Database.getLogEntry();
         Log_tableview.setItems(logsData);

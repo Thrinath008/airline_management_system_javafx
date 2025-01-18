@@ -149,6 +149,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        rolePicker_combobox.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> login_textfield.requestFocus();
+            }
+        });
         login_textfield.setOnKeyPressed(e->{
             switch (e.getCode()){
                 case ENTER -> password_field.requestFocus();

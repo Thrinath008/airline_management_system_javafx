@@ -130,6 +130,16 @@ public class DashboardHomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        from_textfield.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> to_textfield.requestFocus();
+            }
+        });
+        to_textfield.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> date_field.requestFocus();
+            }
+        });
         data = FXCollections.observableArrayList();
         setCellValue();
         flight_data();
