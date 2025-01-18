@@ -25,6 +25,14 @@ import java.util.ResourceBundle;
 public class DashboardHomeController implements Initializable {
 
     @FXML
+    private Button search_flights_button_side_anchorpane;
+
+    @FXML
+    private AnchorPane book_flights_anchorpane;
+    @FXML
+    private Button search_flights_button;
+
+    @FXML
     private TableView<FlightTabel> main_tabel;
 
     @FXML
@@ -62,9 +70,6 @@ public class DashboardHomeController implements Initializable {
 
     @FXML
     private AnchorPane main_AnchorPlane;
-
-    @FXML
-    private Button search_flights_button;
 
     @FXML
     private CheckBox senior_citizen_tick_box;

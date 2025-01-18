@@ -1,6 +1,7 @@
 package com.example.airline_management_system_javafx;
 
 
+import com.example.airline_management_system_javafx.database.Database;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,6 +79,7 @@ public class SigninController implements Initializable {
 
             if (rowsinserted > 0) {
                 showAlert(Alert.AlertType.CONFIRMATION, "success", "created");
+                Database.logAction("SignUp",signin_name.getText()+" has signed up to the data base successfully");
                 back_to_login();
             }
         } catch (IOException e) {

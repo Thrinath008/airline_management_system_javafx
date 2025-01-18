@@ -315,6 +315,7 @@ public class BookingController implements Initializable {
                 // Use FileChooser to select the save location
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Save PDF");
+                fileChooser.setInitialFileName(full_name_textfield.getText()+" Flight ticket");
                 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
                 // Show the save dialog

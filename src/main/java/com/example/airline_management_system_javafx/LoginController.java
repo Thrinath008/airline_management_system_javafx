@@ -8,11 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -35,6 +33,8 @@ public class LoginController implements Initializable {
     private Button exit_button;
     @FXML
     private TextField login_textfield;
+    @FXML
+    private ComboBox<String> rolePicker_combobox;
 
     @FXML
     private AnchorPane main_anchorplane;
@@ -52,9 +52,18 @@ public class LoginController implements Initializable {
     private double X = 0;
     private  double Y = 0;
 
+
     public void loginPassengers(){
         String sql = "SELECT * FROM passengers where email = ? and password = ?";
-
+        String dashboard = "Dashboard-home.fxml";
+        String admin = "admin-home-screen.fxml";
+        String screen;
+        String selectedRole = rolePicker_combobox.getSelectionModel().getSelectedItem();
+        if ("Admin".equals(selectedRole)){
+            screen = admin;
+        }else {
+            screen = dashboard;
+        }
         connection = Database.connectDb();
 
         try {
@@ -75,12 +84,11 @@ public class LoginController implements Initializable {
                 System.out.println(x);
             }else {
                 if (resultSet.next()){
+                    Database.logAction("Login",login_textfield.getText()+" has loged in successfully");
                     login_button.getScene().getWindow().hide();
-                    Parent parent = FXMLLoader.load(getClass().getResource("Dashboard-home.fxml"));
+                    Parent parent = FXMLLoader.load(getClass().getResource(screen));
                     Stage stage = new Stage();
                     Scene scene = new Scene(parent);
-
-
                     parent.setOnMousePressed(mouseEvent -> {
                         X = mouseEvent.getSceneX();
                         Y = mouseEvent.getSceneY();
@@ -89,9 +97,6 @@ public class LoginController implements Initializable {
                         stage.setX(mouseEvent.getScreenX() - X);
                         stage.setY(mouseEvent.getScreenY() - Y);
                     });
-
-
-
                     stage.initStyle(StageStyle.UNDECORATED);
                     stage.setScene(scene);
                     stage.show();
@@ -155,11 +160,69 @@ public class LoginController implements Initializable {
                 case ENTER -> login_button.fire();
             }
         });
-
+        String []items = {"Passenger","Admin"};
+        rolePicker_combobox.getItems().addAll(items);
     }
 
     public void exit_button_on_action(ActionEvent event) {
         Stage stage = (Stage)exit_button.getScene().getWindow();
         stage.close();
+    }
+
+    public void setAdminScreen(ActionEvent e) throws IOException {
+        if (rolePicker_combobox.getSelectionModel().getSelectedItem().isEmpty()){
+            showAlert(Alert.AlertType.ERROR,"Empty fields","Select the role");
+            return;
+        }
+        String selectedRole = rolePicker_combobox.getSelectionModel().getSelectedItem();
+        if ("Admin".equals(selectedRole)){
+            FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("admin-home-screen.fxml"));
+            Stage stage = new Stage();
+            Pane root = fxmlLoader.load();
+            root.setOnMousePressed(event -> {
+                X = event.getSceneX();
+                Y = event.getSceneY();
+            });
+
+            root.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX() - X);
+                stage.setY(event.getScreenY() - Y);
+            });
+            // Display the home screen
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("booking.css").toExternalForm());
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.show();
+        }else {
+            FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Dashboard-home.fxml"));
+            Stage stage = new Stage();
+            Pane root = fxmlLoader.load();
+            root.setOnMousePressed(event -> {
+                X = event.getSceneX();
+                Y = event.getSceneY();
+            });
+
+            root.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX() - X);
+                stage.setY(event.getScreenY() - Y);
+            });
+            // Display the home screen
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("booking.css").toExternalForm());
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.show();
+
+        }
+
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.show();
     }
 }

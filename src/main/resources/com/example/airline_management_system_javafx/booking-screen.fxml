@@ -145,9 +145,9 @@
                   </VBox>
                   <VBox alignment="CENTER" layoutX="522.0" layoutY="44.0" prefHeight="170.0" prefWidth="82.0" spacing="25.0">
                      <children>
-                        <Label fx:id="name_in_ticket" text="Label" />
-                        <Label fx:id="passport_in_ticket" text="Label" />
-                        <Label fx:id="contact_in_ticket" text="Label" />
+                        <Label fx:id="name_in_ticket" />
+                        <Label fx:id="passport_in_ticket" />
+                        <Label fx:id="contact_in_ticket" />
                         <Label text="33 A" />
                      </children>
                   </VBox>
