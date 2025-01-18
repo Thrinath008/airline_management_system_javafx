@@ -5,7 +5,11 @@ module com.example.airline_management_system_javafx {
     requires org.controlsfx.controls;
     requires net.synedra.validatorfx;
     requires java.sql;
-    requires mysql.connector.j;
+//    requires mysql.connector.j;
+    requires layout;
+    requires kernel;
+    requires io;
+    requires java.desktop;
 
     opens com.example.airline_management_system_javafx to javafx.fxml;
     exports com.example.airline_management_system_javafx;
