@@ -2,8 +2,10 @@ package com.example.airline_management_system_javafx.database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import com.example.airline_management_system_javafx.LogEntry;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 
 public class Database {
 
@@ -58,6 +60,36 @@ public class Database {
         }
         return data;
     }
+    public static void logAction(String actionType, String description){
+        String query = "INSERT INTO activity_log (action_type, description) VALUES (?, ?)";
+        try (PreparedStatement preparedStatement = connectDb().prepareStatement(query)){
+            preparedStatement.setString(1,actionType);
+            preparedStatement.setString(2,description);
+            preparedStatement.executeUpdate();
+            System.out.println("action logged: "+actionType+"- "+description);
+        } catch (SQLException e) {
+            System.out.println("error while loged action "+e.getMessage());
+        }
+    }
+    public static ObservableList<LogEntry> getLogEntry(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+        ObservableList<LogEntry> data = FXCollections.observableArrayList();
+        try (Statement statement = connectDb().createStatement()){
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM activity_log ORDER BY timestamp DESC");
+
+            while (resultSet.next()){
+                String formattedTimestamp = resultSet.getTimestamp("timestamp").toLocalDateTime().format(formatter);
+                data.add(new LogEntry(resultSet.getString("action_type"),
+                        resultSet.getString("description"),formattedTimestamp));
+            }
+            connectDb().close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return data;
+    }
+
 
 
 }
