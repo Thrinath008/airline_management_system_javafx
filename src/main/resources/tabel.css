@@ -43,3 +43,77 @@
     -fx-background-color: #adb5bd;
     -fx-background-radius: 4px;
 }
+
+/* Exit button styling */
+.exit-button {
+  -fx-background-color: red;
+  -fx-text-fill: white;
+  -fx-border-color: transparent;
+  -fx-border-radius: 12px;
+  -fx-background-radius: 12px;
+ /* Adds padding inside the button */
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.5, 0, 2);
+
+  -fx-font-weight: bold;
+}
+
+
+.exit-button:hover {
+  -fx-background-color: #ff4d4d;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0.5, 0, 3);
+}
+
+
+.exit-button:focused {
+  -fx-border-color: #ff6666;
+  -fx-border-width: 2px;
+  -fx-border-style: solid;
+}
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8px;
+    -fx-padding: 2px 5px;  /* Decrease padding for smaller height */
+    -fx-font-size: 12px;    /* Reduce font size for smaller height */
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-padding: 2px 5px;   /* Adjust padding inside list items */
+    -fx-font-size: 12px;    /* Reduce font size of items */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: linear-gradient(to bottom, #007aff, #005bb5);
+    -fx-text-fill: white;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #007aff;
+    -fx-background-radius: 50%;
+    -fx-padding: 5px;
+}
+
+.combo-box .arrow:hover {
+    -fx-background-color: #005bb5;
+}
+
+.combo-box .combo-box-popup {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8px;
+}
+
+.combo-box .combo-box-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 2px 5px;   /* Decrease padding for smaller button height */
+}
+
+.combo-box .combo-box-button:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+

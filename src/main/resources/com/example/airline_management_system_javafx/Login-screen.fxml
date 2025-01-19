@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="332.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airline_management_system_javafx.LoginController">
+<StackPane prefHeight="332.0" prefWidth="594.0" stylesheets="@../../../login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airline_management_system_javafx.LoginController">
    <children>
-      <AnchorPane fx:id="main_anchorplane" prefHeight="326.0" prefWidth="600.0">
+      <AnchorPane fx:id="main_anchorplane" prefHeight="326.0" prefWidth="600.0" stylesheets="@../../../login.css">
          <children>
             <ImageView fitHeight="344.0" fitWidth="598.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,12 +23,7 @@
             </ImageView>
             <AnchorPane fx:id="login_dashboard" layoutX="305.0" layoutY="14.0" maxHeight="400.0" maxWidth="300.0" prefHeight="281.0" prefWidth="278.0">
                <children>
-                  <ComboBox fx:id="rolePicker_combobox" layoutX="53.0" layoutY="55.0" prefHeight="26.0" prefWidth="156.0" promptText="pick your role" />
-                  <Label layoutX="102.0" layoutY="23.0" text="Welcome">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
+                  <ComboBox fx:id="rolePicker_combobox" layoutX="45.0" layoutY="39.0" prefHeight="26.0" prefWidth="156.0" promptText="pick your role" stylesheets="@../../../tabel.css" />
                   <Label layoutX="67.0" layoutY="87.0" text="Login(ID)">
                      <font>
                         <Font size="17.0" />
@@ -39,10 +34,10 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="login_textfield" layoutX="45.0" layoutY="114.0" prefHeight="26.0" prefWidth="226.0" promptText="enter email or ID here" />
-                  <PasswordField fx:id="password_field" layoutX="45.0" layoutY="189.0" prefHeight="26.0" prefWidth="226.0" promptText="Enter here" />
-                  <Button fx:id="login_button" layoutX="169.0" layoutY="272.0" mnemonicParsing="false" onAction="#loginPassengers" prefHeight="32.0" prefWidth="98.0" text="Login" />
-                  <Button fx:id="signup_button" layoutX="52.0" layoutY="272.0" mnemonicParsing="false" onAction="#signup" prefHeight="32.0" prefWidth="98.0" text="SignUp" />
+                  <TextField fx:id="login_textfield" layoutX="45.0" layoutY="114.0" prefHeight="26.0" prefWidth="226.0" promptText="enter email or ID here" styleClass="input-field" stylesheets="@../../../dashboard.css" />
+                  <PasswordField fx:id="password_field" layoutX="45.0" layoutY="189.0" prefHeight="26.0" prefWidth="226.0" promptText="Enter here" styleClass="input-field" stylesheets="@../../../dashboard.css" />
+                  <Button fx:id="login_button" layoutX="172.0" layoutY="256.0" mnemonicParsing="false" onAction="#loginPassengers" prefHeight="32.0" prefWidth="98.0" text="Login" />
+                  <Button fx:id="signup_button" layoutX="52.0" layoutY="256.0" mnemonicParsing="false" onAction="#signup" prefHeight="32.0" prefWidth="98.0" text="SignUp" />
                   <FontAwesomeIcon iconName="USER" layoutX="46.0" layoutY="106.0" size="1.5em" wrappingWidth="12.857142448425293"> <!-- size="5rem" -->
                      <font>
                         <Font size="18.0" />
@@ -53,13 +48,21 @@
                         <Font size="72.0" />
                      </font>
                   </FontAwesomeIcon>
+                  <Label layoutX="88.0" layoutY="6.0" text="Welcome">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <Button layoutX="14.0" layoutY="292.0" mnemonicParsing="false" text="help.?" />
-            <Button fx:id="exit_button" mnemonicParsing="false" onAction="#exit_button_on_action" stylesheets="@../../../login.css" text="X" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Button fx:id="exit_button" mnemonicParsing="false" onAction="#exit_button_on_action" styleClass="exit-button" stylesheets="@../../../tabel.css" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIcon iconName="CLOSE" />
+               </graphic>
             </Button>
 
          </children>
