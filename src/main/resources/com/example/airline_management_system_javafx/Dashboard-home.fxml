@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -62,9 +63,9 @@
                                        <children>
                                           <VBox alignment="CENTER" prefHeight="361.0" prefWidth="200.0" spacing="40.0" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button fx:id="eidt_profile_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="edit profile" />
+                                                <Button fx:id="eidt_profile_button" mnemonicParsing="false" onAction="#set_profie_screen" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="edit profile" />
                                                 <Button fx:id="chnage_theme_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="chnage theme" />
-                                                <Button fx:id="report_bug_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="Report Bug" />
+                                                <Button fx:id="report_bug_button" mnemonicParsing="false" onAction="#setReport_bug_anchorepane" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="Report Bug" />
                                              </children>
                                           </VBox>
                                           <Button fx:id="delete_account_button" layoutX="40.0" layoutY="541.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="Delete account" />
@@ -74,7 +75,7 @@
                                  <center>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <AnchorPane fx:id="edit_profile_anchorpane" prefHeight="600.0" prefWidth="634.4" AnchorPane.bottomAnchor="0.7999999999999545" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <AnchorPane fx:id="edit_profile_anchorpane" prefHeight="600.0" prefWidth="634.4" visible="false" AnchorPane.bottomAnchor="0.7999999999999545" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
                                                 <VBox layoutX="172.0" layoutY="139.0" prefHeight="208.0" prefWidth="290.0" spacing="30.0">
                                                    <children>
@@ -104,6 +105,12 @@
                                                       <Font size="18.0" />
                                                    </font>
                                                 </Text>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane fx:id="report_bug_anchorepane" prefHeight="612.8" prefWidth="634.4" visible="false">
+                                             <children>
+                                                <TextArea fx:id="report_textarea" layoutX="103.0" layoutY="106.0" prefHeight="200.0" prefWidth="428.0" promptText="write the bug here" />
+                                                <Button fx:id="submit_report" layoutX="272.0" layoutY="337.0" mnemonicParsing="false" onAction="#setSubmit_report_button" prefHeight="40.0" prefWidth="100.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="submit" />
                                              </children>
                                           </AnchorPane>
                                        </children>

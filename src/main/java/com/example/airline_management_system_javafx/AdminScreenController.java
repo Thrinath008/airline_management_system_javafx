@@ -10,12 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -96,10 +91,45 @@ public class AdminScreenController implements Initializable {
     @FXML
     private TextField to_textfield;
 
+    @FXML
+    private AnchorPane Settings_anchorpane;
+    @FXML
+    private AnchorPane settings_edit_profile_button;
+    @FXML
+    private Button edit_profile_button;
+    @FXML
+    private AnchorPane report_bug_anchorepane;
+    @FXML
+    private Button settings_button;
+    @FXML
+    private Button settings_new_button;
+    @FXML
+    private TextArea report_textarea;
+    @FXML
+    private Button submit_report;
+    @FXML
+    private AnchorPane crew_anchorpane;
+    @FXML
+    private TableView<FlightTabel>allFlightTable;
+    @FXML
+    private TableColumn<?,?> all_flight_name;
+    @FXML
+    private TableColumn<?,?> all_flllight_from_col;
+    @FXML
+    private TableColumn<?,?> all_flight_to_col;
+    @FXML
+    private TableColumn<?,?> all_flight_date_col;
+    @FXML
+    private TableColumn<?,?> employee_id_col;
+
+
+
+
     private LocalDate localDate;
     private String from_place_name;
     private String to_place_name;
     private ObservableList<FlightTabel> data;
+    private ObservableList<FlightTabel> allflightdata;
     private static String flight_number_ticket;
     public String flight_from_ticket;
     public String flight_to_ticket;
@@ -110,6 +140,8 @@ public class AdminScreenController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
+
+    private String report_content;
 
     @FXML
     void exit(ActionEvent event) {
@@ -122,6 +154,16 @@ public class AdminScreenController implements Initializable {
         description_log_col.setCellValueFactory(new PropertyValueFactory<>("description"));
         title_log_col.setCellValueFactory(new PropertyValueFactory<>("actionType"));
     }
+    @FXML
+    public void setSettings_edit_profile_button(){
+
+    }
+    @FXML
+    public void setReport_bug_anchorepane(){
+        settings_edit_profile_button.setVisible(false);
+        report_bug_anchorepane.setVisible(true);
+    }
+
 
     @FXML
     void logout_button(ActionEvent e) throws IOException {
@@ -152,11 +194,35 @@ public class AdminScreenController implements Initializable {
     public void setLogs_anchorpane(){
         book_flights_anchorpane.setVisible(false);
         Logs_anchorpane.setVisible(true);
+        Settings_anchorpane.setVisible(false);
+        crew_anchorpane.setVisible(false);
     }
     @FXML
     public void setBook_flights_anchorpane(){
         book_flights_anchorpane.setVisible(true);
         Logs_anchorpane.setVisible(false);
+        Settings_anchorpane.setVisible(false);
+        crew_anchorpane.setVisible(false);
+    }
+    @FXML
+    public void setSettings_anchorpane(){
+        book_flights_anchorpane.setVisible(false);
+        Logs_anchorpane.setVisible(false);
+        Settings_anchorpane.setVisible(true);
+        crew_anchorpane.setVisible(false);
+    }
+    @FXML
+    public void setCrew_anchorpane(){
+        book_flights_anchorpane.setVisible(false);
+        Logs_anchorpane.setVisible(false);
+        Settings_anchorpane.setVisible(false);
+        crew_anchorpane.setVisible(true);
+    }
+    @FXML
+    private  void setSubmit_report_button(){
+        report_content = report_textarea.getText();
+        report_textarea.clear();
+        showAlert(Alert.AlertType.CONFIRMATION,"Submited successfuly","Thanks for ur feadback we will try to resolve as soon as possibel");
     }
     @FXML
     void seniorcityzen(ActionEvent event) {
@@ -193,6 +259,11 @@ public class AdminScreenController implements Initializable {
 
         main_tabel.setItems(data);
     }
+    public void allflighttabel(){
+        allflightdata = Database.getFlightDatatoAdmin();
+        allFlightTable.setItems(allflightdata);
+
+    }
 
     public void setCellValue() {
         col_flight_number.setCellValueFactory(new PropertyValueFactory<>("flight_number_1"));
@@ -202,6 +273,13 @@ public class AdminScreenController implements Initializable {
         col_depart.setCellValueFactory(new PropertyValueFactory<>("depart_1"));
         col_arrival.setCellValueFactory(new PropertyValueFactory<>("arrival_1"));
         col_fare.setCellValueFactory(new PropertyValueFactory<>("fare_1"));
+    }
+    @FXML
+    public void setallflightcol(){
+        all_flight_name.setCellValueFactory(new PropertyValueFactory<>("flight_number_1"));
+        all_flllight_from_col.setCellValueFactory(new PropertyValueFactory<>("from_1"));
+        all_flight_to_col.setCellValueFactory(new PropertyValueFactory<>("to_1"));
+        all_flight_date_col.setCellValueFactory(new PropertyValueFactory<>("date_1"));
     }
 
 
@@ -221,8 +299,10 @@ public class AdminScreenController implements Initializable {
         ObservableList<LogEntry> logsData = Database.getLogEntry();
         Log_tableview.setItems(logsData);
         data = FXCollections.observableArrayList();
+        setallflightcol();
         setCellValue();
         flight_data();
+        allflighttabel();
         main_tabel.setOnMouseClicked(e -> {
             FlightTabel selectedFlight = main_tabel.getSelectionModel().getSelectedItem();
 
@@ -281,5 +361,12 @@ public class AdminScreenController implements Initializable {
             }
         });
 
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.show();
     }
 }

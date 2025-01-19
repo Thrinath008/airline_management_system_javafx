@@ -106,7 +106,14 @@ public class DashboardHomeController implements Initializable {
     private AnchorPane edit_profile_anchorpane;
     @FXML
     public Label name_label_home;
+    @FXML
+    private AnchorPane report_bug_anchorepane;
+    @FXML
+    private TextArea report_textarea;
+    @FXML
+    private Button submit_report;
 
+    private String report_content;
     private LocalDate localDate;
     private String from_place_name;
     private String to_place_name;
@@ -138,6 +145,12 @@ public class DashboardHomeController implements Initializable {
     private void setSettings_anchorpane(){
         book_flights_anchorpane.setVisible(false);
         settings_anchorpane.setVisible(true);
+    }
+    @FXML
+    private  void setSubmit_report_button(){
+        report_content = report_textarea.getText();
+        report_textarea.clear();
+        showAlert(Alert.AlertType.CONFIRMATION,"Submited successfuly","Thanks for ur feadback we will try to resolve as soon as possibel");
     }
     @FXML
     public void logout_button() throws IOException {
@@ -180,6 +193,17 @@ public class DashboardHomeController implements Initializable {
         } else {
             System.out.println("not working");
         }
+    }
+    @FXML
+    public void setReport_bug_anchorepane(){
+        edit_profile_anchorpane.setVisible(false);
+        report_bug_anchorepane.setVisible(true);
+    }
+    @FXML
+    public void set_profie_screen(){
+        edit_profile_anchorpane.setVisible(true);
+        report_bug_anchorepane.setVisible(false);
+
     }
     @FXML
     public String getemailfromlogin(String email){
@@ -226,6 +250,11 @@ public class DashboardHomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(name1+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        report_textarea.setOnKeyPressed(e->{
+            switch (e.getCode()){
+                case ENTER -> submit_report.fire();
+            }
+        });
 
 
         from_textfield.setOnKeyPressed(e->{
@@ -346,6 +375,13 @@ public class DashboardHomeController implements Initializable {
      //   System.out.println(flight_from_time_ticket);
      //   System.out.println(flight_to_time_ticket);
      //   System.out.println(flight_fare_ticket);
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.show();
     }
 
 }

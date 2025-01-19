@@ -61,6 +61,32 @@ public class Database {
         }
         return data;
     }
+
+    public static ObservableList<FlightTabel> getFlightDatatoAdmin() {
+        ObservableList<FlightTabel> data = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM flights_info_main";
+        try (Connection connection = connectDb();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                data.add(new FlightTabel(
+                        resultSet.getString("flight_number"),
+                        resultSet.getString("departure_city"),
+                        resultSet.getString("arrival_city"),
+                        resultSet.getString("flight_date"),
+                        resultSet.getString("departure_time"),
+                        resultSet.getString("arrival_time"),
+                        resultSet.getString("fare")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching flight data: " + e.getMessage());
+        }
+        return data;
+    }
+
     public static void logAction(String actionType, String description){
         String query = "INSERT INTO activity_log (action_type, description) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = connectDb().prepareStatement(query)){
