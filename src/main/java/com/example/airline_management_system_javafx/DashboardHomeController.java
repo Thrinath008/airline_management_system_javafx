@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -79,6 +80,30 @@ public class DashboardHomeController implements Initializable {
 
     @FXML
     private TextField to_textfield;
+    @FXML
+    private AnchorPane settings_anchorpane;
+    @FXML
+    private Button eidt_profile_button;
+    @FXML
+    private Button settings_button;
+    @FXML
+    private Button chnage_theme_button;
+    @FXML
+    private Button update_profile_save_changes_button;
+    @FXML
+    private Button clean_textfield_button;
+    @FXML
+    private Button delete_account_button;
+    @FXML
+    private Button report_bug_button;
+    @FXML
+    private TextField update_confirm_password_textfield;
+    @FXML
+    private TextField update_password_textfield;
+    @FXML
+    private TextField upadte_name_field;
+    @FXML
+    private AnchorPane edit_profile_anchorpane;
 
     private LocalDate localDate;
     private String from_place_name;
@@ -97,11 +122,33 @@ public class DashboardHomeController implements Initializable {
     private double yOffset = 0;
 
     @FXML
+    private void setBook_flights_anchorpane(){
+        book_flights_anchorpane.setVisible(true);
+        settings_anchorpane.setVisible(false);
+    }
+    @FXML
+    private void setSettings_anchorpane(){
+        book_flights_anchorpane.setVisible(false);
+        settings_anchorpane.setVisible(true);
+    }
+
+    @FXML
     public void logout_button() throws IOException {
         logout_button_.getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("Login-screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login-screen.fxml"));
+        Pane root = fxmlLoader.load();
         Stage stage = new Stage();
-        Scene scene = new Scene(parent);
+        root.getStylesheets().add("login.css");
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+        Scene scene = new Scene(root);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }

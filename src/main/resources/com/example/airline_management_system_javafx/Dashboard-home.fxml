@@ -11,17 +11,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airline_management_system_javafx.DashboardHomeController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane layoutY="6.4" prefHeight="612.0" prefWidth="1034.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
                <center>
-                  <AnchorPane prefHeight="598.0" prefWidth="834.0" style="-fx-background-color: #f9f9f9;" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="585.0" prefWidth="834.0" style="-fx-background-color: #f9f9f9;" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="book_flights_anchorpane" layoutY="8.0" prefHeight="592.0" prefWidth="833.0" style="-fx-background-color: #f9f9f9;" stylesheets="@../../../dashboard.css">
+                        <AnchorPane fx:id="book_flights_anchorpane" layoutY="8.0" prefHeight="592.0" prefWidth="833.0" style="-fx-background-color: #f9f9f9;" stylesheets="@../../../dashboard.css" visible="false">
                            <children>
                               <Label layoutX="20.0" layoutY="20.0" styleClass="header-label" text="Flight Search" />
                               <AnchorPane layoutX="50.0" layoutY="70.0" prefHeight="120.0" prefWidth="700.0" styleClass="search-pane">
@@ -48,13 +52,71 @@
                                     <TableColumn fx:id="col_fare" prefWidth="100.0" text="FARE" />
                                  </columns>
                               </TableView>
-                              <Button fx:id="exit_button" layoutX="807.0" layoutY="2.0" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button">
-                                 <graphic>
-                                    <FontAwesomeIcon iconName="CLOSE" />
-                                 </graphic>
-                              </Button>
                            </children>
                         </AnchorPane>
+                        <AnchorPane fx:id="settings_anchorpane" layoutY="-16.0" prefHeight="628.0" prefWidth="834.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-16.0">
+                           <children>
+                              <BorderPane layoutX="97.0" layoutY="12.0" prefHeight="600.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0">
+                                 <left>
+                                    <AnchorPane prefHeight="616.0" prefWidth="200.0" styleClass="search-pane" stylesheets="@../../../dashboard.css" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="361.0" prefWidth="200.0" spacing="40.0" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button fx:id="eidt_profile_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="edit profile" />
+                                                <Button fx:id="chnage_theme_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="chnage theme" />
+                                                <Button fx:id="report_bug_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="Report Bug" />
+                                             </children>
+                                          </VBox>
+                                          <Button fx:id="delete_account_button" layoutX="40.0" layoutY="541.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="Delete account" />
+                                       </children>
+                                    </AnchorPane>
+                                 </left>
+                                 <center>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <AnchorPane fx:id="edit_profile_anchorpane" prefHeight="600.0" prefWidth="634.4" AnchorPane.bottomAnchor="0.7999999999999545" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox layoutX="172.0" layoutY="139.0" prefHeight="208.0" prefWidth="290.0" spacing="30.0">
+                                                   <children>
+                                                      <TextField fx:id="upadte_name_field" prefHeight="34.0" prefWidth="290.0" />
+                                                      <TextField fx:id="update_password_textfield" prefHeight="35.0" prefWidth="290.0" />
+                                                      <TextField fx:id="update_confirm_password_textfield" layoutX="10.0" layoutY="75.0" prefHeight="35.0" prefWidth="290.0" />
+                                                   </children>
+                                                </VBox>
+                                                <Text layoutX="84.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text layoutX="92.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Text>
+                                                <HBox alignment="CENTER" layoutX="158.0" layoutY="308.0" prefHeight="100.0" prefWidth="331.0" spacing="30.0">
+                                                   <children>
+                                                      <Button fx:id="clean_textfield_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="clear" />
+                                                      <Button fx:id="update_profile_save_changes_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="action-button" stylesheets="@../../../dashboard.css" text="Update" />
+                                                   </children>
+                                                </HBox>
+                                                <Text layoutX="20.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="exit_button" layoutX="807.0" layoutY="2.0" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@../../../dashboard.css" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="7.5">
+                           <graphic>
+                              <FontAwesomeIcon iconName="CLOSE" />
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                </center>
@@ -62,9 +124,9 @@
                   <AnchorPane prefWidth="200.0" stylesheets="@../../../dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <FontAwesomeIcon iconName="USER" layoutX="53.0" layoutY="153.0" size="10EM" />
-                        <Button fx:id="search_flights_button_side_anchorpane" layoutX="55.0" layoutY="225.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" text="Book Flights" />
+                        <Button fx:id="search_flights_button_side_anchorpane" layoutX="55.0" layoutY="225.0" mnemonicParsing="false" onAction="#setBook_flights_anchorpane" prefHeight="35.0" prefWidth="105.0" text="Book Flights" />
                         <Button layoutX="56.0" layoutY="306.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="103.0" text="Trips" />
-                        <Button layoutX="57.0" layoutY="391.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" text="Settings" />
+                        <Button fx:id="settings_button" layoutX="57.0" layoutY="391.0" mnemonicParsing="false" onAction="#setSettings_anchorpane" prefHeight="35.0" prefWidth="102.0" text="Settings" />
                         <Button fx:id="logout_button_" layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#logout_button" styleClass="secondary-button" text="LogOut" />
                      </children>
                      <styleClass>

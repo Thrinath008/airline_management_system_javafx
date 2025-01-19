@@ -101,14 +101,30 @@
     -fx-background-color: #cccccc;
 }
 
+/* Exit button styling */
 .exit-button {
-    -fx-background-color: #ff3b30;
-    -fx-border-radius: 50%;
-    -fx-background-radius: 50%;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;
+  -fx-background-color: red; /* Red background for the button */
+  -fx-text-fill: white; /* White text color */
+  -fx-border-color: transparent; /* Removes border */
+  -fx-border-radius: 12px; /* Rounds the corners */
+  -fx-background-radius: 12px; /* Rounds the background corners */
+ /* Adds padding inside the button */
+  -fx-cursor: hand; /* Changes the cursor to a pointer (hand) */
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.5, 0, 2); /* Subtle shadow effect */
+ /* Optional: Sets the font size */
+  -fx-font-weight: bold; /* Optional: Makes the text bold */
 }
 
+/* Hover effect */
 .exit-button:hover {
-    -fx-background-color: #e62e24;
+  -fx-background-color: #ff4d4d; /* Lighter red on hover */
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0.5, 0, 3); /* Slightly stronger shadow */
 }
+
+/* Focus effect */
+.exit-button:focused {
+  -fx-border-color: #ff6666; /* Highlight border on focus */
+  -fx-border-width: 2px; /* Slightly thicker border on focus */
+  -fx-border-style: solid; /* Solid border */
+}
+

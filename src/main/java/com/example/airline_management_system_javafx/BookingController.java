@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -218,13 +219,17 @@ public class BookingController implements Initializable {
         String pasPassport = pasport_textfield.getText();
         String pasContact = contact_textfield.getText();
 
-        name_in_ticket.setText(pasName);
-        passport_in_ticket.setText(pasPassport);
-        contact_in_ticket.setText(pasContact);
-        passangers_details_anchorpane.setVisible(false);
-        farePrice_anchorpane.setVisible(false);
-        first_Hbox_booking.setVisible(false);
-        confirmbooking_download_anchorpane.setVisible(true);
+        if (pasName.isEmpty()||pasPassport.isEmpty()||pasContact.isEmpty()){
+            showAlert(Alert.AlertType.ERROR,"Incomplet","please fill all the details");
+        }else {
+            name_in_ticket.setText(pasName);
+            passport_in_ticket.setText(pasPassport);
+            contact_in_ticket.setText(pasContact);
+            passangers_details_anchorpane.setVisible(false);
+            farePrice_anchorpane.setVisible(false);
+            first_Hbox_booking.setVisible(false);
+            confirmbooking_download_anchorpane.setVisible(true);
+        }
     }
 
     public void setParentscreen(Stage stage){
@@ -352,5 +357,12 @@ public class BookingController implements Initializable {
 //        arrivalTimeLabel.setText(arrivalTime);
 //        final_fare_label.setText(flightNumber);
 
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.show();
     }
 }

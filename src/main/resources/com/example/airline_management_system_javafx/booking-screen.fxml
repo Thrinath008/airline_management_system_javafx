@@ -15,7 +15,7 @@
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airline_management_system_javafx.BookingController">
    <children>
       <!-- Main Background -->
-      <AnchorPane prefHeight="600.0" prefWidth="778.0" style="-fx-background-color: #f9f9f9;" stylesheets="@../../../booking.css">
+      <AnchorPane prefHeight="600.0" prefWidth="760.0" style="-fx-background-color: #f9f9f9;" stylesheets="@../../../booking.css">
          <children>
             <!-- Fare Summary Section -->
             <AnchorPane fx:id="farePrice_anchorpane" layoutX="494.0" layoutY="281.0" prefHeight="220.0" prefWidth="220.0" styleClass="summary-pane" AnchorPane.rightAnchor="86.79999999999995">
@@ -34,7 +34,7 @@
             </AnchorPane>
 
             <!-- Passenger Details Section -->
-            <AnchorPane fx:id="passangers_details_anchorpane" layoutX="51.0" layoutY="279.0" prefHeight="224.0" prefWidth="436.0" styleClass="details-pane" AnchorPane.leftAnchor="51.0">
+            <AnchorPane fx:id="passangers_details_anchorpane" layoutX="51.0" layoutY="279.0" prefHeight="224.0" prefWidth="435.0" styleClass="details-pane" AnchorPane.leftAnchor="51.0">
                <children>
                   <Label layoutX="20.0" layoutY="20.0" styleClass="details-header" text="Passenger Details" />
                   <VBox layoutX="21.0" layoutY="68.0" prefWidth="360.0" spacing="15.0">
@@ -64,7 +64,10 @@
             </HBox>
 
             <!-- Exit Button -->
-            <Button fx:id="exit_button" layoutX="769.0" layoutY="1.0" onAction="#exit" styleClass="exit-button" text="X" />
+            <Button fx:id="exit_button" layoutX="755.0" layoutY="14.0" onAction="#exit" prefHeight="30.0" prefWidth="30.0" styleClass="exit-button" stylesheets="@../../../booking.css">
+               <graphic>
+                  <FontAwesomeIcon iconName="CLOSE" />
+               </graphic></Button>
             <AnchorPane fx:id="main_ticket_anchorpane" layoutX="51.0" layoutY="37.0" prefHeight="240.0" prefWidth="662.0" styleClass="details-pane" stylesheets="@../../../booking.css" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="87.0">
                <children>
                   <Label id="flight_from_label" fx:id="flight_from_label" layoutX="25.0" layoutY="13.0" prefHeight="42.0" prefWidth="58.0" text="from">
