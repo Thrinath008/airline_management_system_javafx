@@ -196,22 +196,11 @@ public class BookingController implements Initializable {
         return newValue;
     }
 
-    public void backToFlights() throws IOException {
-        back_to_flights.getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("Dashboard-home.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        parent.setOnMousePressed(mouseEvent -> {
-            xOffset = mouseEvent.getSceneX();
-            yOffset = mouseEvent.getSceneY();
+    public void backToFlights(Stage main) throws IOException {
+        back_to_flights.setOnAction(e->{
+            back_to_flights.getScene().getWindow().hide();
+            main.show();
         });
-        parent.setOnMouseDragged(mouseEvent -> {
-            stage.setX(mouseEvent.getScreenX() - xOffset);
-            stage.setY(mouseEvent.getScreenY() - yOffset);
-        });
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(scene);
-        stage.show();
     }
     public void setticket_details(){
 

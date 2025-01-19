@@ -171,7 +171,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="back_to_flights" layoutX="192.0" layoutY="511.0" onAction="#backToFlights" styleClass="secondary-button" text="Search More Flights" />
+            <Button fx:id="back_to_flights" layoutX="192.0" layoutY="511.0" styleClass="secondary-button" text="Search More Flights" />
          </children>
       </AnchorPane>
    </children>

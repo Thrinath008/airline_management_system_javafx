@@ -10,6 +10,7 @@ module com.example.airline_management_system_javafx {
     requires kernel;
     requires io;
     requires java.desktop;
+    requires com.google.gson;
 
     opens com.example.airline_management_system_javafx to javafx.fxml;
     exports com.example.airline_management_system_javafx;

@@ -1,14 +1,12 @@
 package com.example.airline_management_system_javafx;
 import com.example.airline_management_system_javafx.database.Database;
 import com.example.airline_management_system_javafx.database.FlightTabel;
-import com.example.airline_management_system_javafx.database.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -77,6 +75,8 @@ public class DashboardHomeController implements Initializable {
 
     @FXML
     private CheckBox student_tick_box;
+    @FXML
+    private Label helloname_label;
 
     @FXML
     private TextField to_textfield;
@@ -104,6 +104,8 @@ public class DashboardHomeController implements Initializable {
     private TextField upadte_name_field;
     @FXML
     private AnchorPane edit_profile_anchorpane;
+    @FXML
+    public Label name_label_home;
 
     private LocalDate localDate;
     private String from_place_name;
@@ -120,6 +122,12 @@ public class DashboardHomeController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
+    private static String email;
+    @FXML
+    private int id1;
+    private String name1;
+    private String password1;
+    private String email1;
 
     @FXML
     private void setBook_flights_anchorpane(){
@@ -131,7 +139,6 @@ public class DashboardHomeController implements Initializable {
         book_flights_anchorpane.setVisible(false);
         settings_anchorpane.setVisible(true);
     }
-
     @FXML
     public void logout_button() throws IOException {
         logout_button_.getScene().getWindow().hide();
@@ -174,9 +181,53 @@ public class DashboardHomeController implements Initializable {
             System.out.println("not working");
         }
     }
+    @FXML
+    public String getemailfromlogin(String email){
+        this.email = email;
+        System.out.println("helooooooooooooooooooooooooooooooooooo we got the emaillllll   "+email);
+        return email;
+    }
+    @FXML
+    public void getpassengerInfo(String email){
+        ObservableList<passengers> passengerList = Database.getpassengerbyemail(email);
+        if (!passengerList.isEmpty()) {
+            // Assuming only one passenger is fetched (unique email)
+            passengers passenger = passengerList.get(0);
+
+            // Store data in variables
+            this.id1 = passenger.getId();
+            this.name1 = passenger.getName();
+            this.password1 = passenger.getPassword();
+            this.email1 = passenger.getEmail();
+
+            // Display or use the stored data
+            System.out.println("Passenger details loaded:");
+            System.out.println("ID: " + id1);
+            System.out.println("Name: " + name1);
+            System.out.println("Password: " + password1);
+            System.out.println("Email: " + email1);
+            helloname_label.setText(passenger.getName());
+        } else {
+            System.out.println("No passenger found with the given email.");
+        }
+    }
+    @FXML
+    public void setHelloname_label(String s){
+        helloname_label.setText(s);
+        name1 = s;
+    }
+    public String getname(String n){
+        this.name1 = n;
+        System.out.println("this is form getname "+name1);
+
+        return name1;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(name1+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+
         from_textfield.setOnKeyPressed(e->{
             switch (e.getCode()){
                 case ENTER -> to_textfield.requestFocus();
@@ -187,6 +238,7 @@ public class DashboardHomeController implements Initializable {
                 case ENTER -> date_field.requestFocus();
             }
         });
+        System.out.println("this is s from controller "+name1);
         data = FXCollections.observableArrayList();
         setCellValue();
         flight_data();
@@ -197,11 +249,13 @@ public class DashboardHomeController implements Initializable {
                 System.out.println("No flight selected. Please select a valid flight.");
                 return;
             }
-            main_tabel.getScene().getWindow().hide();
+            Stage mainStageDashboard = (Stage)main_tabel.getScene().getWindow();
+            mainStageDashboard.hide();
             try {
                 FXMLLoader parent = new FXMLLoader(BookingController.class.getResource("booking-screen.fxml"));
                 Parent node = parent.load() ;
                 BookingController bc = parent.getController();
+                bc.backToFlights(mainStageDashboard);
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(node);

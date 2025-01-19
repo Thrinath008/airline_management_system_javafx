@@ -230,11 +230,13 @@ public class AdminScreenController implements Initializable {
                 System.out.println("No flight selected. Please select a valid flight.");
                 return;
             }
-            main_tabel.getScene().getWindow().hide();
+            Stage mainstage = (Stage)main_tabel.getScene().getWindow();
+            mainstage.hide();
             try {
                 FXMLLoader parent = new FXMLLoader(BookingController.class.getResource("booking-screen.fxml"));
                 Parent node = parent.load() ;
                 BookingController bc = parent.getController();
+                bc.backToFlights(mainstage);
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(node);

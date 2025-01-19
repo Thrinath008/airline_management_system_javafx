@@ -124,10 +124,33 @@
                   <AnchorPane prefWidth="200.0" stylesheets="@../../../dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <FontAwesomeIcon iconName="USER" layoutX="53.0" layoutY="153.0" size="10EM" />
-                        <Button fx:id="search_flights_button_side_anchorpane" layoutX="55.0" layoutY="225.0" mnemonicParsing="false" onAction="#setBook_flights_anchorpane" prefHeight="35.0" prefWidth="105.0" text="Book Flights" />
-                        <Button layoutX="56.0" layoutY="306.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="103.0" text="Trips" />
-                        <Button fx:id="settings_button" layoutX="57.0" layoutY="391.0" mnemonicParsing="false" onAction="#setSettings_anchorpane" prefHeight="35.0" prefWidth="102.0" text="Settings" />
-                        <Button fx:id="logout_button_" layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#logout_button" styleClass="secondary-button" text="LogOut" />
+                        <VBox alignment="CENTER" layoutX="41.0" layoutY="173.0" prefHeight="298.0" prefWidth="134.0" spacing="40.0">
+                           <children>
+                              <Label fx:id="helloname_label" prefHeight="20.0" stylesheets="@../../../booking.css">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="search_flights_button_side_anchorpane" mnemonicParsing="false" onAction="#setBook_flights_anchorpane" prefHeight="35.0" prefWidth="130.0" text="Book Flights">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="PLANE" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="settings_button" mnemonicParsing="false" onAction="#setSettings_anchorpane" prefHeight="35.0" prefWidth="130.0" text="Settings">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="GEARS" />
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="Trips" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="logout_button_" layoutX="15.0" layoutY="552.0" mnemonicParsing="false" onAction="#logout_button" styleClass="secondary-button" text="LogOut">
+                           <graphic>
+                              <FontAwesomeIcon iconName="SIGN_OUT" />
+                           </graphic>
+                        </Button>
+                        <Text layoutX="77.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="welcome," />
+                        <FontAwesomeIcon iconName="HOME" layoutX="2.0" layoutY="24.0" size="2em" />
                      </children>
                      <styleClass>
                         <String fx:value="action-button" />

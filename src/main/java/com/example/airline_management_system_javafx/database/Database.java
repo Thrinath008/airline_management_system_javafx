@@ -1,5 +1,5 @@
 package com.example.airline_management_system_javafx.database;
-
+import com.example.airline_management_system_javafx.passengers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import com.example.airline_management_system_javafx.LogEntry;
@@ -55,6 +55,7 @@ public class Database {
                         resultSet.getString("fare")
                 ));
             }
+            Database.logAction("searched flight","the flight "+from+" to "+to+" has searched on "+ date);
         } catch (SQLException e) {
             System.out.println("Error fetching flight data: " + e.getMessage());
         }
@@ -88,6 +89,32 @@ public class Database {
             throw new RuntimeException(e);
         }
         return data;
+    }
+    public static ObservableList<passengers> getpassengerbyemail(String email) {
+        String sql = "SELECT * FROM passengers WHERE email = ?";
+        ObservableList<passengers> passengersInfo = FXCollections.observableArrayList();
+
+        try (Connection connection = connectDb();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                // Add each passenger to the ObservableList
+                passengersInfo.add(new passengers(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("password"),
+                        resultSet.getString("email")
+                ));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching passenger data", e);
+        }
+
+        return passengersInfo;
     }
 
 

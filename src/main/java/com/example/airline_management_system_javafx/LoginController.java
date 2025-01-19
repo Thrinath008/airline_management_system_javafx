@@ -86,7 +86,13 @@ public class LoginController implements Initializable {
                 if (resultSet.next()){
                     Database.logAction("Login",login_textfield.getText()+" has loged in successfully");
                     login_button.getScene().getWindow().hide();
-                    Parent parent = FXMLLoader.load(getClass().getResource(screen));
+                    FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource(screen));
+                    Parent parent = fxmlLoader.load();
+                    if (screen == dashboard){
+                        DashboardHomeController dashboardHomeController = fxmlLoader.getController();
+                        dashboardHomeController.setHelloname_label(login_textfield.getText());
+                        dashboardHomeController.getname(login_textfield.getText());
+                    }
                     Stage stage = new Stage();
                     Scene scene = new Scene(parent);
                     parent.setOnMousePressed(mouseEvent -> {
@@ -103,6 +109,7 @@ public class LoginController implements Initializable {
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("success");
                     alert.setHeaderText(null);
+
 
                     alert.setContentText("Login successful");
                     PauseTransition delay = new PauseTransition(Duration.seconds(3));
